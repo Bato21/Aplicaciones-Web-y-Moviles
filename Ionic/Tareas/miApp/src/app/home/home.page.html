@@ -1,20 +1,32 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Saludador</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-input label="Tu nombre" labelPlacement="floating"
+      placeholder="Escribe tu nombre" [(ngModel)]="nombre"></ion-input>
+  </ion-item>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-item>
+    <ion-input label="Tu ciudad" labelPlacement="floating"
+      placeholder="Escribe tu ciudad" [(ngModel)]="ciudad"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" (click)="saludar()" [disabled]="!nombre.trim() || !ciudad.trim()">
+    Saludar
+  </ion-button>
+
+  @if (saludo) {
+    <h1 class="ion-text-center">{{ saludo }}</h1>
+  }
+
+  <!-- navega hacia adelante, a la ruta /acerca -->
+  @if (yaSaludo) {
+    <ion-button expand="block" fill="outline" routerLink="/acerca">
+      Acerca de
+    </ion-button>
+  }
 </ion-content>
