@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';        // <- nuevo
+import { EncabezadoComponent } from '../encabezado/encabezado.component';  // <- nuevo
 import {
-  IonHeader, IonToolbar, IonTitle, IonContent,
-  IonButtons, IonBackButton, IonButton, IonIcon,
+  IonContent,
+  IonButton,
 } from '@ionic/angular';
 
 
@@ -11,9 +12,10 @@ import {
   templateUrl: './acerca.page.html',
   styleUrls: ['./acerca.page.scss'],
   imports: [
-    IonHeader, IonToolbar, IonTitle, IonContent,
-    IonButtons, IonBackButton, IonButton, IonIcon,
+    IonContent,
+    IonButton,
     RouterLink,   // los del botón atrás
+    EncabezadoComponent,  // el encabezado
   ],
 })
 export class AcercaPage {

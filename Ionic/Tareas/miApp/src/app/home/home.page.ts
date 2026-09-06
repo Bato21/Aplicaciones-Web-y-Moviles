@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';        // <- nuevo
+import { RouterLink, RouterOutlet } from '@angular/router';        // <- nuevo
+import { EncabezadoComponent } from '../encabezado/encabezado.component';  // <- nuevo
 import {
-  IonHeader, IonToolbar, IonTitle, IonContent,
+  IonContent,
   IonItem, IonInput, IonButton,
 } from '@ionic/angular';
 
@@ -11,10 +12,12 @@ import {
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   imports: [
-    IonHeader, IonToolbar, IonTitle, IonContent,
+    IonContent,
     IonItem, IonInput, IonButton,
     FormsModule,          // habilita [(ngModel)]
     RouterLink,           // <- sin esto, routerLink no hace nada
+    RouterOutlet,         // <- para mostrar las rutas hijas
+    EncabezadoComponent,  // el encabezado
   ],
 })
 export class HomePage {

@@ -1,8 +1,4 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Saludador</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-encabezado titulo="Saludador" color="primary" subtitulo="Bienvenido a la app" mostrarAcerca="/acerca"></app-encabezado>
 
 <ion-content class="ion-padding">
   <ion-item>
@@ -23,10 +19,14 @@
     <h1 class="ion-text-center">{{ saludo }}</h1>
   }
 
-  <!-- navega hacia adelante, a la ruta /acerca -->
-  @if (yaSaludo) {
-    <ion-button expand="block" fill="outline" routerLink="/acerca">
-      Acerca de
-    </ion-button>
-  }
+
+  <ion-button expand="block" [routerLink]="['/home/consejo']">
+      Ver consejo (ruta hija)
+  </ion-button>
+
+  <ion-button expand="block" [routerLink]="['/home/ayuda']">
+      Ver ayuda (ruta hija)
+  </ion-button>
+
+  <router-outlet></router-outlet>
 </ion-content>
