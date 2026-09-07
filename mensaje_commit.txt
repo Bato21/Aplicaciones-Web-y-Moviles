@@ -1,0 +1,72 @@
+Galeria: mostrar los perritos en una grilla
+
+Se completo la pagina de galeria para que muestre las fotos de los
+perritos usando los datos del servicio, en vez del listado fijo que
+venia en el proyecto base.
+
+
+LO QUE SE HIZO
+==============
+
+1. Servicio de perritos (src/app/services/perros.service.ts)
+   El metodo todas() devolvia un arreglo vacio. Ahora devuelve el
+   arreglo de perritos que ya estaba definido adentro del servicio.
+
+2. Pagina de galeria (src/app/pages/galeria/galeria.page.ts)
+   La clase estaba vacia. Se le agregaron dos propiedades:
+   - el servicio, obtenido con inject(PerrosService)
+   - la lista "perros", que se llena llamando a todas()
+   El orden importa: primero el servicio, despues la lista.
+
+3. Template de la galeria (src/app/pages/galeria/galeria.page.html)
+   - Se reemplazo *ngFor por el bloque @for de Angular 20, con su
+     "track perro.id" (obligatorio en la sintaxis nueva).
+   - Ahora se recorre la lista de perritos completa, no solo las URLs
+     de las fotos, asi que se puede acceder a nombre, raza, edad, etc.
+   - Faltaba cerrar la etiqueta </ion-grid>.
+   - La imagen usa [src]="perro.foto" y [alt]="perro.nombre".
+
+4. Componente encabezado (src/app/encabezado/)
+   Se agrega al repositorio por primera vez. Ademas se corrigieron
+   errores que impedian compilar:
+   - Los componentes de Ionic se importaban desde "@ionic/angular",
+     que no es standalone. Se unificaron en "@ionic/angular/standalone".
+   - Se sacaron IonButton y RouterLink, que no se usaban en el template.
+
+5. Limpieza de imports
+   En galeria.page.ts se sacaron IonHeader, IonToolbar y IonTitle:
+   no se usan en ese template porque viven dentro de app-encabezado.
+
+6. angular.json
+   Solo se agrego "analytics": false. Lo escribio el CLI de Angular
+   solo, no es un cambio hecho a mano.
+
+
+ESTADO ACTUAL
+=============
+El proyecto compila sin errores y la galeria muestra los 6 perritos
+en 2 columnas.
+
+
+LO QUE FALTA
+============
+
+Para la galeria:
+- Darle estilos a .imagen-galeria en galeria.page.scss, que esta
+  vacio. Sin eso las fotos quedan de alturas distintas. Sirven
+  width, aspect-ratio y object-fit: cover.
+- Hacer la grilla adaptable: hoy size="6" deja siempre 2 columnas.
+  Con size-md y size-lg se ve mejor en pantallas grandes.
+- Mostrar datos debajo de cada foto (nombre, raza, edad) y marcar
+  con un badge los que ya estan adoptados (perro.adoptado).
+
+Para el resto de la app:
+- El servicio todavia tiene dos metodos sin implementar:
+  obtener(id) devuelve undefined y agregar(perro) no hace nada.
+  Se necesitan para las paginas de detalle y de nuevo.
+- La pagina de detalle no muestra ningun perrito todavia.
+- La pagina de nuevo no permite agregar perritos todavia.
+
+Nota sobre las dependencias:
+Se instalaron con yarn (npx yarn install), porque el proyecto trae
+yarn.lock. Con npm install da un conflicto de versiones de Angular.
