@@ -1,0 +1,13 @@
+<app-encabezado titulo="Galería" subtitulo="Fotos de nuestros perritos"></app-encabezado>
+
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row>
+      @for (perro of perros; track perro.id){
+        <ion-col size="6">
+          <img [src]="perro.foto" [alt]="perro.nombre" class="imagen-galeria">
+        </ion-col>
+      }
+    </ion-row>
+  </ion-grid>
+</ion-content>
